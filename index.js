@@ -33,7 +33,7 @@ bot.on('message', async msg => {
 });
 
 
-app.get('/', (req, res) => res.send({status: 200, 'Server started successfully'}));
+app.get('/', (req, res) => res.send({status: 200, message: 'Server started successfully'}));
 
 
 app.listen(process.env.PORT || 5500, () => {
