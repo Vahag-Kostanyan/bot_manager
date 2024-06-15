@@ -1,9 +1,12 @@
 const telegramApi = require('node-telegram-bot-api');
-const http = require('http');
+const express = require('express');
 const dotenv = require('dotenv');
 const { setHamsterKombatStatus } = require("./models/configs");
 
 dotenv.config();
+
+const app = express()
+app.use(express.json());
 
 const bot = new telegramApi(process.env.TOKEN, { polling: true });
 
@@ -30,20 +33,11 @@ bot.on('message', async msg => {
 });
 
 
-const server = http.createServer(async (req, res) => {
-    try {
-        // Set the response headers and status code
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ status: 200, message: 'Started successfully' }));
-    } catch (error) {
-        console.log(error);
-        // Handle any errors that occur during request processing
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Internal Server Error' }));
-    }
+app.get('/', (req, res) => res.send({status: 200, 'Server started successfully'}));
+
+
+app.listen(process.env.PORT || 5500, () => {
+    console.log('Server is listening on port 5500');
 });
 
-
-server.listen(process.env.PORT || 5500, () => {
-    console.log('Server is listening on port 5500');
-})
+module.exports = app;
