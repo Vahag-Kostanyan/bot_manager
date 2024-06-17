@@ -41,4 +41,8 @@ app.listen(process.env.PORT || 5500, () => {
     console.log('Server is listening on port 5500');
 });
 
-// module.exports = app;
+setTimeout(() => {
+    console.log('server working');
+}, 50000);
+
+module.exports = app;
