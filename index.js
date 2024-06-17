@@ -7,6 +7,7 @@ dotenv.config();
 
 const app = express()
 app.use(express.json());
+app.use(express.static('static'))
 
 const bot = new telegramApi(process.env.TOKEN, { polling: true });
 
@@ -40,4 +41,4 @@ app.listen(process.env.PORT || 5500, () => {
     console.log('Server is listening on port 5500');
 });
 
-module.exports = app;
+// module.exports = app;
