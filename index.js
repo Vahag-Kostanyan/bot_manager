@@ -2,6 +2,7 @@ const telegramApi = require('node-telegram-bot-api');
 const express = require('express');
 const dotenv = require('dotenv');
 const { setHamsterKombatStatus } = require("./models/configs");
+const { sendHamsterKombatNotification } = require('./notification/hamster_kombatt');
 
 dotenv.config();
 
@@ -36,13 +37,14 @@ bot.on('message', async msg => {
 
 app.get('/', (req, res) => res.send({status: 200, message: 'Server started successfully'}));
 
+app.post('/send_hamster_kombat_notification', (req, res) => {
+    sendHamsterKombatNotification();
+    res.send({status: 200});
+});
+
 
 app.listen(process.env.PORT || 5500, () => {
     console.log('Server is listening on port 5500');
 });
-
-setTimeout(() => {
-    console.log('server working');
-}, 50000);
 
 module.exports = app;
