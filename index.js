@@ -1,6 +1,7 @@
 const telegramApi = require('node-telegram-bot-api');
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const { setHamsterKombatStatus } = require("./models/configs");
 const { sendHamsterKombatNotification } = require('./notification/hamster_kombatt');
 
@@ -8,6 +9,7 @@ dotenv.config();
 
 const app = express()
 app.use(express.json());
+app.use(cors());
 app.use(express.static('static'))
 
 const bot = new telegramApi(process.env.TOKEN, { polling: true });
