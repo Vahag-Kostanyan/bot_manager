@@ -7,6 +7,12 @@ const { sendHamsterKombatNotification } = require('./notification/hamster_kombat
 
 dotenv.config();
 
+const corsOptions = {
+  origin: '*', // This allows all origins
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify the allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed headers
+};
+
 const app = express()
 app.use(express.json());
 app.use(cors());
