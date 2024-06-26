@@ -1,6 +1,6 @@
 const climeDailyCipher = (cipher) => {
     try{
-        fetch('http://localhost:5000/api/hamster_kompat/claim-daily-cipher', {
+        fetch('https://super-player-api.onrender.com/api/hamster_kompat/claim-daily-cipher', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
