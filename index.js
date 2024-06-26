@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const { setHamsterKombatStatus } = require("./models/configs");
 const { sendHamsterKombatNotification } = require('./notification/hamster_kombatt');
+const { climeDailyCipher } = require('./api/clime-daily-cipher');
 
 dotenv.config();
 
@@ -38,12 +39,16 @@ bot.on('message', async msg => {
             await setHamsterKombatStatus(false)
             return bot.sendMessage(chatId, `Bot stopped successfully`);
         default:
-            return bot.sendMessage(chatId, "I can't understand you try again");
+            if(msg.text.includes('clime_daily_cipher')){
+                climeDailyCipher(msg.text.split('-')[1]);
+            }else{
+                return bot.sendMessage(chatId, "I can't understand you try again");
+            }
     }
 });
 
 
-app.get('/', (req, res) => res.send({status: 200, message: 'Server started successfully'}));
+app.get('/', (req, res) => res.send({status: 200, message: 'Server working'}));
 
 app.post('/send_hamster_kombat_notification', (req, res) => {
     let message = req?.body?.message || 'we don\'t receive any message' 
