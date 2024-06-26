@@ -46,7 +46,8 @@ bot.on('message', async msg => {
 app.get('/', (req, res) => res.send({status: 200, message: 'Server started successfully'}));
 
 app.post('/send_hamster_kombat_notification', (req, res) => {
-    sendHamsterKombatNotification();
+    let message = req?.body?.message || 'we don\'t receive any message' 
+    sendHamsterKombatNotification(message);
     res.send({status: 200});
 });
 

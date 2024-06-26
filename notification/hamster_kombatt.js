@@ -1,4 +1,4 @@
-const sendHamsterKombatNotification = async () => {
+const sendHamsterKombatNotification = async (message) => {
     const url = `https://api.telegram.org/bot${process.env.TOKEN}/sendMessage`;
     const response = await fetch(url, {
         method: 'POST',
@@ -6,8 +6,9 @@ const sendHamsterKombatNotification = async () => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            chat_id: 5438286770,
-            text: 'Hamster Kombat Balance updated successfully',
+            chat_id: -4101672296,
+            text: message,
+            // text: 'Hamster Kombat Balance updated successfully',
         }),
     });
 
