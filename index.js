@@ -39,8 +39,8 @@ bot.on('message', async msg => {
             await setHamsterKombatStatus(false)
             return bot.sendMessage(chatId, `Bot stopped successfully`);
         default:
-            if(msg.text.includes('clime_daily_cipher')){
-                climeDailyCipher(msg.text.split('-')[1]);
+            if(msg?.text?.includes('clime_daily_cipher')){
+                climeDailyCipher(msg.text.split('-')[1] || null);
             }else{
                 return bot.sendMessage(chatId, "I can't understand you try again");
             }
