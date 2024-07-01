@@ -22,8 +22,10 @@ app.use(express.static('static'))
 const bot = new telegramApi(process.env.TOKEN, { polling: true });
 
 bot.setMyCommands([
-    { command: '/start', description: 'Start bot' },
-    { command: '/stop', description: 'Stop bot' },
+    { command: '/hamster_kombat/start', description: 'Start hamster_kombat bot' },
+    { command: '/hamster_kombat/stop', description: 'Stop hamster_kombat bot' },
+    { command: '/psp/start', description: 'Start psp bot' },
+    { command: '/psp/stop', description: 'Stop psp bot' },
 ]);
 
 
