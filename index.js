@@ -2,7 +2,7 @@ const telegramApi = require('node-telegram-bot-api');
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const { setHamsterKombatStatus } = require("./models/configs");
+const { setHamsterKombatStatus, setPSPStatus } = require("./models/configs");
 const { sendHamsterKombatNotification } = require('./notification/hamster_kombatt');
 const { climeDailyCipher } = require('./api/clime-daily-cipher');
 
@@ -32,12 +32,18 @@ bot.on('message', async msg => {
     const chatId = msg.chat.id;
 
     switch (text) {
-        case "/start":
+        case "/hamster_kombat/start":
             await setHamsterKombatStatus(true)
-            return bot.sendMessage(chatId, 'Bot started successfully');
-        case "/stop":
+            return bot.sendMessage(chatId, 'Bot for hamser_kombat started successfully');
+        case "/hamster_kombat/stop":
             await setHamsterKombatStatus(false)
-            return bot.sendMessage(chatId, `Bot stopped successfully`);
+            return bot.sendMessage(chatId, `Bot for hamser_kombat stopped successfully`);
+        case "/psp/start":
+            await setPSPStatus(true)
+            return bot.sendMessage(chatId, `Bot for psp stopped successfully`);
+        case "/psp/stop":
+            await setPSPStatus(false)
+            return bot.sendMessage(chatId, `Bot for psp stopped successfully`);
         default:
             if(msg?.text?.includes('clime_daily_cipher')){
                 climeDailyCipher(msg?.text?.split('-')[1] || null);
