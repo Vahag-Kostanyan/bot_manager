@@ -22,10 +22,10 @@ app.use(express.static('static'))
 const bot = new telegramApi(process.env.TOKEN, { polling: true });
 
 bot.setMyCommands([
-    { command: '/hamster_kombat/start', description: 'Start hamster_kombat bot' },
-    { command: '/hamster_kombat/stop', description: 'Stop hamster_kombat bot' },
-    { command: '/psp/start', description: 'Start psp bot' },
-    { command: '/psp/stop', description: 'Stop psp bot' },
+    { command: '/hamster_kombat-start', description: 'Start hamster_kombat bot' },
+    { command: '/hamster_kombat-stop', description: 'Stop hamster_kombat bot' },
+    { command: '/psp-start', description: 'Start psp bot' },
+    { command: '/psp-stop', description: 'Stop psp bot' },
 ]);
 
 
@@ -34,16 +34,16 @@ bot.on('message', async msg => {
     const chatId = msg.chat.id;
 
     switch (text) {
-        case "/hamster_kombat/start":
+        case "/hamster_kombat-start":
             await setHamsterKombatStatus(true)
             return bot.sendMessage(chatId, 'Bot for hamser_kombat started successfully');
-        case "/hamster_kombat/stop":
+        case "/hamster_kombat-stop":
             await setHamsterKombatStatus(false)
             return bot.sendMessage(chatId, `Bot for hamser_kombat stopped successfully`);
-        case "/psp/start":
+        case "/psp-start":
             await setPSPStatus(true)
             return bot.sendMessage(chatId, `Bot for psp stopped successfully`);
-        case "/psp/stop":
+        case "/psp-stop":
             await setPSPStatus(false)
             return bot.sendMessage(chatId, `Bot for psp stopped successfully`);
         default:
